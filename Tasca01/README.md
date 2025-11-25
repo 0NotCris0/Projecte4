@@ -99,3 +99,6 @@ Com es garanteix que les dades de Comptabilitat/Clients compleixen:
 - **RPO:** 4 hores  
 - **RTO:** 4 hores
 
+- [Tornar pagina principal](../README.md)
+- [Anar a la activitat](activitats.md)
+
