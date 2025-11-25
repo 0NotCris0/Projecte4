@@ -50,3 +50,24 @@ Per assegurar un sistema de còpies fiable i pràctic, és recomanable combinar 
 
 La **còpia més recent** ha d’estar sempre al **NAS intern**, perquè permet restaurar el sistema de manera immediata davant d’un problema.
 
+# Fase 2: Treball per parelles
+Treballant per parelles:
+
+## 1. Discussió i Consens
+Comparen les seves respostes individuals (Fase 1).
+
+## 2. Elaboració d'una Proposta Unificada
+Heu de consensuar i dissenyar el vostre propi **Esquema 3-2-1 de Còpies** (3 còpies, 2 mitjans, 1 fora de lloc) basat en els requisits del cas.
+
+---
+
+## Proposta de la Parella
+
+| Element | Proposta de la Parella | Justificació |
+|--------|-------------------------|--------------|
+| **Dades Crítiques** | Bases de dades de Comptabilitat i Clients, Documents de Projectes i Carpetes Personals | Les bases de dades tenen canvis constants i són essencials; els projectes i carpetes personals contenen informació de treball important. |
+| **Periodicitat (BD)** | Incremental cada 4 hores + completa cada nit | Per complir el RPO de 4 hores i assegurar un punt de recuperació estable cada dia. |
+| **Tipus de Còpia (BD)** | Completa diària + incrementals cada 4 hores | Les incrementals permeten captar tots els canvis recents i les completes asseguren un backup íntegre. |
+| **Mitjà 1 (Local)** | NAS intern | Permet restaurar ràpidament i guardar les còpies més recents dins l’empresa. |
+| **Mitjà 2 (Extern)** | Còpia al núvol (Cloud Backup) | Garanteix una còpia off-site en cas d’incendi, robatori o fallada física de la infraestructura local. |
+
