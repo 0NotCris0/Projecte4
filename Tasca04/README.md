@@ -16,7 +16,7 @@ Dominar l'accés remot no és una opció; és l'habilitat fonamental que ens per
 
 Per això, caldrà que demostreu que heu après bé els conceptes mitjançant una prova.
 
-## Materials i links de suport
+
 
 - [Tornar pagina principal](../README.md)
 - [Anar a la activitat](activitats.md)
