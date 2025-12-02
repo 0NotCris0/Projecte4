@@ -71,7 +71,7 @@ Heu de consensuar i dissenyar el vostre propi **Esquema 3-2-1 de Còpies** (3 c�
 | **Mitjà 1 (Local)** | NAS intern | Permet restaurar ràpidament i guardar les còpies més recents dins l’empresa. |
 | **Mitjà 2 (Extern)** | Còpia al núvol (Cloud Backup) | Garanteix una còpia off-site en cas d’incendi, robatori o fallada física de la infraestructura local. |
 
-# Proposta de Còpies – Muntatges i Serveis Tècnics SL
+# Proposta de Còpies – Muntatges i Serveis Tècnics SL (grupal)
 
 ## 1) Dades Objecte de Còpia
 
