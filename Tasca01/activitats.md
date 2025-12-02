@@ -71,3 +71,74 @@ Heu de consensuar i dissenyar el vostre propi **Esquema 3-2-1 de Còpies** (3 c�
 | **Mitjà 1 (Local)** | NAS intern | Permet restaurar ràpidament i guardar les còpies més recents dins l’empresa. |
 | **Mitjà 2 (Extern)** | Còpia al núvol (Cloud Backup) | Garanteix una còpia off-site en cas d’incendi, robatori o fallada física de la infraestructura local. |
 
+# Proposta de Còpies – Muntatges i Serveis Tècnics SL
+
+## 1) Dades Objecte de Còpia
+
+| Origen      | Dades                                 | Crítiques | Freqüència de còpia                                |
+|------------|--------------------------------------|-----------|--------------------------------------------------|
+| **Servidor** | Bases de Dades (Comptabilitat i Clients) | Sí        | Incremental cada 4 hores + Completa diària; còpia completa setmanal diumenge |
+| **Servidor** | Documents de Projectes               | No        | Incremental diària + Completa setmanal          |
+| **Servidor** | Carpetes Personals dels Usuaris     | No        | Incremental diària + Completa setmanal          |
+| **Clients**  | Carpeta “Documents” dels equips      | Sí/No     | Incremental diària + Completa setmanal          |
+
+**Justificació:**  
+Les **bases de dades** són crítiques perquè tenen canvis constants i només poden perdre fins a 4 hores de dades. Els **Documents de Projectes** i **Carpetes Personals** són importants, però poden tolerar una pèrdua de fins a 24 hores. La **carpeta Documents dels clients** es copia parcialment, ja que alguns tècnics hi deixen informació rellevant.
+
+---
+
+## 2) Cronograma Setmanal Detallat
+
+| Dia       | Dades                  | Tipus de còpia                      | Mitjà       |
+|-----------|-----------------------|-----------------------------------|------------|
+| Dilluns   | Bases de Dades         | Incremental cada 4 h + Completa diària | NAS / Cloud |
+|           | Documents de Projectes | Incremental                        | NAS / Cloud |
+|           | Carpetes Personals     | Incremental                        | Disc dur extern |
+| Dimarts   | Bases de Dades         | Incremental cada 4 h + Completa diària | NAS / Cloud |
+|           | Documents de Projectes | Incremental                        | NAS / Cloud |
+|           | Carpetes Personals     | Incremental                        | Disc dur extern |
+| Dimecres  | Bases de Dades         | Incremental cada 4 h + Completa diària | NAS / Cloud |
+|           | Documents de Projectes | Incremental                        | NAS / Cloud |
+|           | Carpetes Personals     | Incremental                        | Disc dur extern |
+| Dijous    | Bases de Dades         | Incremental cada 4 h + Completa diària | NAS / Cloud |
+|           | Documents de Projectes | Incremental                        | NAS / Cloud |
+|           | Carpetes Personals     | Incremental                        | Disc dur extern |
+| Divendres | Bases de Dades         | Incremental cada 4 h + Completa diària | NAS / Cloud |
+|           | Documents de Projectes | Incremental                        | NAS / Cloud |
+|           | Carpetes Personals     | Incremental                        | Disc dur extern |
+| Dissabte  | Bases de Dades         | Incremental cada 4 h + Completa diària | NAS / Cloud |
+|           | Documents de Projectes | Incremental                        | NAS / Cloud |
+|           | Carpetes Personals     | Incremental                        | Disc dur extern |
+| Diumenge  | Bases de Dades         | Còpia completa setmanal            | NAS / Cloud |
+|           | Documents de Projectes | Còpia completa setmanal            | NAS / Cloud |
+|           | Carpetes Personals     | Còpia completa setmanal            | NAS / Cloud |
+
+*Nota:* Les còpies incrementals es fan diverses vegades al dia per les bases de dades, mentre que la resta només una vegada diària.
+
+---
+
+## 3) Elecció de Mitjans i Ubicació (Regla 3-2-1)
+
+- **Mitjà 1 (Local):** NAS intern  
+  **Justificació:** Permet restauracions ràpides i guarda les còpies més recents dins l’empresa.
+
+- **Mitjà 2 (Extern):** Cloud Backup (Backblaze B2 o Google Cloud)  
+  **Justificació:** Garantitza una còpia fora de l’empresa amb alta disponibilitat.
+
+- **Ubicació Fora de Lloc:** Còpia al núvol  
+  **Responsable:** Responsable IT de l’empresa, que comprova la correcta sincronització i integritat de les còpies.
+
+---
+
+## 4) Estratègia de Recuperació (RTO/RPO)
+
+- **RPO (Pèrdua de dades admissible):**  
+  Les bases de dades es copien incrementalment cada 4 hores, de manera que la pèrdua màxima no excedeix les 4 hores exigides.
+
+- **RTO (Temps màxim de recuperació):**  
+  Les còpies estan disponibles al NAS intern per a restauracions ràpides. Si el servidor principal falla, les dades crítiques poden recuperar-se en menys de 4 hores. La còpia al núvol garanteix recuperació encara que l’empresa perdi tot l’equip físic.
+
+**Conclusió:**  
+Aquest esquema compleix tots els requisits del cas: les dades crítiques estan protegides, hi ha un historial d’un mes i es garanteixen RPO i RTO per a les bases de dades.
+
+
