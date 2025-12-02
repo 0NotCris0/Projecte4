@@ -93,25 +93,25 @@ Les **bases de dades** són crítiques perquè tenen canvis constants i només p
 |-----------|-----------------------|----------------------------------|---------------------------|
 | Dilluns   | Bases de Dades         | Incremental cada 4 h + completa diària | NAS                       |
 |           | Documents de Projectes | Incremental                       | Cloud                     |
-|           | Carpetes Personals     | Incremental                       | NAS                       |
+|           | Carpetes Personals     | Incremental                       |  Disco Duro Extern                       |
 | Dimarts   | Bases de Dades         | Incremental cada 4 h + completa diària | NAS                       |
-|           | Documents de Projectes | Incremental                       | Disco Duro Extern         |
-|           | Carpetes Personals     | Incremental                       | NAS                       |
+|           | Documents de Projectes | Incremental                       | Cloud         |
+|           | Carpetes Personals     | Incremental                       | Disco Duro Extern                       |
 | Dimecres  | Bases de Dades         | Incremental cada 4 h + completa diària | NAS                       |
 |           | Documents de Projectes | Incremental                       | Cloud                     |
 |           | Carpetes Personals     | Incremental                       | Disco Duro Extern         |
 | Dijous    | Bases de Dades         | Incremental cada 4 h + completa diària | NAS                       |
 |           | Documents de Projectes | Incremental                       | Cloud                     |
-|           | Carpetes Personals     | Incremental                       | NAS                       |
+|           | Carpetes Personals     | Incremental                       | Disco Duro Extern                       |
 | Divendres | Bases de Dades         | Incremental cada 4 h + completa diària | NAS                       |
-|           | Documents de Projectes | Incremental                       | Disco Duro Extern         |
-|           | Carpetes Personals     | Incremental                       | NAS                       |
+|           | Documents de Projectes | Incremental                       | Cloud         |
+|           | Carpetes Personals     | Incremental                       | Disco Duro Extern                       |
 | Dissabte  | Bases de Dades         | Incremental cada 4 h + completa diària | NAS                       |
 |           | Documents de Projectes | Incremental                       | Cloud                     |
 |           | Carpetes Personals     | Incremental                       | Disco Duro Extern         |
-| Diumenge  | Bases de Dades         | Còpia completa setmanal            | NAS                       |
+| Diumenge  | Bases de Dades         | Còpia completa setmanal            | Cloud                       |
 |           | Documents de Projectes | Còpia completa setmanal            | Cloud                     |
-|           | Carpetes Personals     | Còpia completa setmanal            | Disco Duro Extern         |
+|           | Carpetes Personals     | Còpia completa setmanal            | Cloud         |
 
 ---
 
