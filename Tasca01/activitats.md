@@ -141,4 +141,4 @@ Les **bases de dades** són crítiques perquè tenen canvis constants i només p
 **Conclusió:**  
 Amb aquesta combinació de mitjans i ubicacions, es compleixen tots els requisits de la regla 3-2-1 i es garanteix que les dades més crítiques estiguin disponibles dins del temps màxim permès amb mínim risc de pèrdua.
 
-
+- [Tornar al enunciat](README.md)
