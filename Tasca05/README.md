@@ -18,4 +18,4 @@ Usa com a referència dels punts a documentar les activitats que s’indiquen al
 Aquesta guia ha de ser impecable. Penseu que el pròxim tècnic que s'incorpori dependrà directament de la vostra feina per poder ser operatiu des del primer dia. Comencem la PoC.
 
 - [Tornar pagina principal](../README.md)
-- [Anar a la activitat](guia.md)
+- [Anar a la guia](guia.md)
