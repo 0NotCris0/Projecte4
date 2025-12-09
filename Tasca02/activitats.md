@@ -1,203 +1,203 @@
 # T02: DPR: còpies de seguretat. Cas pràctic
 
-El primer que farem sera crear dos maquines virtuals, la de windows i un altre de ubuntu i les configurarem aamb aquestes especificacions. En la de windows crearem dos discos la del sistema en general i la segona per fer les copies de seguretat que sera de 10GB.
+El primer que farem serà crear dues màquines virtuals, la de Windows i una altra d’Ubuntu, i les configurarem amb aquestes especificacions. En la de Windows crearem dos discs: el del sistema en general i el segon per fer les còpies de seguretat, que serà de 10GB.
 
-img 1 
+![](img/1.png)
 
-img 2
+![](img/2.png)
 
-##  Part 1: Còpia seguretat dels equips clients Windows
+## Part 1: Còpia de seguretat dels equips clients Windows
 
-Començarem amb la del windows que es la primera que ens demana. 
+Començarem amb la de Windows, que és la primera que ens demana.
 
-El primer que farem sera anar a administracio de discos, per poder habilitar el segon disc que hem creat i li donarem a inicialitzar disc.
+El primer que farem serà anar a Administració de discs, per poder habilitar el segon disc que hem creat, i li donarem a inicialitzar disc.
 
-img 3 
+![](img/3.png)
 
 Posarem tot el disc.
 
-img 4
+![](img/4.png)
 
-Formatearem el disc amb la configuracio predeterminada.
+Formatarem el disc amb la configuració predeterminada.
 
-img 5
+![](img/5.png)
 
-I per ultim li donarem a finalitzar i el tindrem hablititat.
+I per últim li donarem a finalitzar i el tindrem habilitat.
 
-img 6
+![](img/6.png)
 
-img 7
+![](img/7.png)
 
-Ara el seguent pas sera instalar duplicati que anirem a la seva pagina web i li donarem a descaregar per windows.
+Ara el següent pas serà instal·lar Duplicati, que anirem a la seva pàgina web i li donarem a descarregar per a Windows.
 
-img 8
+![](img/8.png)
 
-Al haver finalitzat li donarem a executar.
+En haver finalitzat li donarem a executar.
 
-img 9
+![](img/9.png)
 
-I ens sortira aixo li haurem de donar next.
+I ens sortirà això, li haurem de donar a Next.
 
-img 10
+![](img/10.png)
 
-Aceptarem tot ho deixarem predeterminat i li donarem a next.
+Acceptarem tot, ho deixarem predeterminat i li donarem a Next.
 
-img 11
+![](img/11.png)
 
-img 12
+![](img/12.png)
 
-img 13
+![](img/13.png)
 
-I li donarem a finish.
+I li donarem a Finish.
 
-img 14
+![](img/14.png)
 
-Inicialitzarem i haurem de posar una password que sera usuari.
+Inicialitzarem i haurem de posar una contrasenya que serà "usuari".
 
-img 15
+![](img/15.png)
 
-img 16
+![](img/16.png)
 
-### Creacio de backup en el propi equip
+### Creació de backup en el propi equip
 
-Ja començem crean el backups li donarem a add backups.
+Ja comencem creant el backup i li donarem a Add backup.
 
-img 17
+![](img/17.png)
 
-Despres add new backup.
+Després Add new backup.
 
-img 18
+![](img/18.png)
 
-Ara haurem de posar le canfiguracio general, com el nom, descripcio i contraseña i li donarem a continuar.
+Ara haurem de posar la configuració general, com el nom, descripció i contrasenya, i li donarem a Continuar.
 
-img 19
+![](img/19.png)
 
-Haurem de escollir on volem fer el backup que sera en el segon disc perque es guardi alla i farem continue. Tambe escollim que farem de My Documents del equip.
+Haurem d’escollir on volem fer el backup, que serà en el segon disc perquè es guardi allà, i farem Continue. També escollim que farem de My Documents de l’equip.
 
-img 20
+![](img/20.png)
 
-img 53
+![](img/53.png)
 
-Escollirem cada cuant volem quie es fagi que en aquet cas sera cada 1 hora tots els dias.
+Escollirem cada quant volem que es faci, que en aquest cas serà cada 1 hora tots els dies.
 
-img 21
+![](img/21.png)
 
-Aqui deixarem com esta predeterminat.
+Aquí deixarem com està predeterminat.
 
-img 22
+![](img/22.png)
 
-I podrem veure que ja esta creat correctament, pero ara falta comprovar.
+I podrem veure que ja està creat correctament, però ara falta comprovar.
 
-img 23
+![](img/23.png)
 
-### Comprovacio de backup en el propi equip
+### Comprovació de backup en el propi equip
 
-Crearem una carpeta i podrem posar tambe unas fotos, en el apartat de documents.
+Crearem una carpeta i podrem posar també unes fotos, en l’apartat de Documents.
 
-img 24
+![](img/24.png)
 
 Les esborrem totes.
 
-img 25
+![](img/25.png)
 
-Entrarem un altre vegada en la aplicacio i li donarem a start.
+Entrarem una altra vegada en l’aplicació i li donarem a Start.
 
-img 26
+![](img/26.png)
 
-Veurem el backup que hem fet i li danrem a restore.
+Veurem el backup que hem fet i li donarem a Restore.
 
-img 27
+![](img/27.png)
 
-Selkecionarem lo que volem recuperar que sera tot.
+Seleccionarem el que volem recuperar, que serà tot.
 
-img 28
+![](img/28.png)
 
-I podrem decidir on els recuperarem pero posarem el mateix lloc que sera en documents.
+I podrem decidir on els recuperarem, però posarem el mateix lloc, que serà en Documents.
 
-img 29
+![](img/29.png)
 
-img 30
+![](img/30.png)
 
-I podrem veure que ja ho tindrem ben fet
+I podrem veure que ja ho tindrem ben fet.
 
-img 52
+![](img/52.png)
 
-img 31
+![](img/31.png)
 
-### Creacio de backup en google drive
+### Creació de backup en Google Drive
 
-Farem les mateixes passes que abans i donarem add backups and new backups.
+Farem les mateixes passes que abans i donarem Add backup i New backup.
 
-Despres ens sortira per posar la configuracio general i li posarem un altre nom per saber diferenciar.
+Després ens sortirà per posar la configuració general i li posarem un altre nom per saber diferenciar.
 
-img 32
+![](img/32.png)
 
-Pero ara en backup destination posarem google drive en vegada de fitxers.
+Però ara en Backup destination posarem Google Drive en vegada de fitxers.
 
-img 33
+![](img/33.png)
 
-Ens demanaran la Folder patch que posarem Documents i el AutID.
+Ens demanaran la Folder path, que posarem Documents, i l’AuthID.
 
-img 37
+![](img/37.png)
 
-Que aixo ho aconseguirem automaticament.
+Que això ho aconseguirem automàticament.
 
-img 34
+![](img/34.png)
 
-img 35
+![](img/35.png)
 
-img 36
+![](img/36.png)
 
-Despres decidirem a que fer el backup que sera un altre vegada a document.
+Després decidirem a què fer el backup, que serà una altra vegada a Documents.
 
-img 38
+![](img/38.png)
 
-Posarem que voldrem fer cada dia a las 18:00 el backup.
+Posarem que voldrem fer cada dia a les 18:00 el backup.
 
-img 39
+![](img/39.png)
 
-Deixarem la configuracio predeterminada.
+Deixarem la configuració predeterminada.
 
-img 40
+![](img/40.png)
 
-I ja tindrem el backup que es guarda en el google drive.
+I ja tindrem el backup que es guarda en el Google Drive.
 
-img 41
+![](img/41.png)
 
-Podrem veure en el drive que esta.
+Podrem veure en el Drive que està.
 
-img 42
+![](img/42.png)
 
-### Comprovacio de backup en google drive
+### Comprovació de backup en Google Drive
 
 Ara com abans tindrem una carpeta i fotos.
 
-img 43
+![](img/43.png)
 
 Esborrarem tot.
 
-img 44
+![](img/44.png)
 
-Li doanrem al inici a restore start.
+Li donarem a Inici i a Restore.
 
-img 45
+![](img/45.png)
 
-I escollirem la de google drive i li donarem a restore.
+I escollirem la de Google Drive i li donarem a Restore.
 
-img 46
+![](img/46.png)
 
-Una altre vegada selecionarem lo que volem recuperar que sera tot.
+Una altra vegada seleccionarem el que volem recuperar, que serà tot.
 
-img 47
+![](img/47.png)
 
-I aqui podem escollir la ruta pero deixarem la original.
+I aquí podem escollir la ruta, però deixarem l’original.
 
-img 48
+![](img/48.png)
 
-img 49
+![](img/49.png)
 
-img 51
+![](img/51.png)
 
-I podrem veure que ja esta tot un altre vegada.
+I podrem veure que ja està tot una altra vegada.
 
-img 50
+![](img/50.png)
