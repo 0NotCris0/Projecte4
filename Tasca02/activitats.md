@@ -335,4 +335,82 @@ duplicity restore file:///media/backup/ /home/usuari
 
 img 68
 
+Despres farem un ls i entrarem en el usuari i comprovem que ho tenim tot un altre vegada.
 
+```bash
+ls
+cd usuari
+ls
+```
+
+img 69
+
+Despres el seguent pas sera crear un nou fitxer per fer un altre comprovacio.
+
+```bash
+fallocate -l 10MB archivo5
+``` 
+
+img 70 
+
+Farem una copia nova, i com hem creat un nou arxiu el detectara i fara una copia incremental.
+
+```bash
+duplicity full /home/ file:///media/backup/
+```
+
+img 71
+
+Ara desmontarem /media/backup.
+
+```bash 
+umount /media/backup
+```
+
+img 72
+
+Ara crearem un script amb bin-bash que fara la copia completa de /home del usuari principal. Osigui fara tot el que hem fet pero automaticament.
+
+img 73
+
+Despres li donarem permisos de execusio perque sino no podrem executarlo,
+
+```bash
+chmod +x fullbackup.sh
+```
+
+img 74
+
+I modifiquem el cron perquè s’executi els diumenges a les 23:00. I guardarem.
+
+```bash
+crontab -e
+```
+
+img 75
+
+img 76
+
+El seguent pas i el ultim sera crear un altre arxiu executable de bin-bash, que sigui el incremental. 
+
+img 77
+
+Donarem tambe els permisos amb chmod.
+
+```bash
+chmod +x incrementalbackup.sh
+```
+
+img 78
+
+Comprovarem que hem creat els dos am ls -l.
+
+```bash 
+ls -l
+``` 
+
+img 79
+
+Per ultim el programem a cron perquè s’executi de dilluns a dissabte a les 23:00.
+
+img 80
