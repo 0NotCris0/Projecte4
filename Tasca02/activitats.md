@@ -213,7 +213,7 @@ Entrarem en la maquina de linux i comprovarem que veu el segon disk. Amb aquesta
 sudo fdisk -l
 ``` 
 
-img 55 
+![](img/55.png) 
 
 Ara crearem una particio nova en el segon disc de 10GB.
 Posarem primer N(nova particio), P(Una particio primaria), posarem el que surt per defecte i per ultim W(per guardar.)
@@ -222,14 +222,14 @@ Posarem primer N(nova particio), P(Una particio primaria), posarem el que surt p
 sudo fdisk /dev/sdb
 ```
 
-img 56
+![](img/56.png)
 
 I ara podem veure que s'ha creat correctament. 
 
 ```bash
 sudo fdisk -l
 ``` 
-img 57
+![](img/57.png)
 
 Haurem de posarle en el format XFS amb aquesta comanda.
 
@@ -237,7 +237,7 @@ Haurem de posarle en el format XFS amb aquesta comanda.
 sudo mkfs.xfs /dev/sdb1
 ```
 
-img 58
+![](img/58.png)
 
 Creem el punt de muntatge manualment a /media/backup. El primer sera crear la carpeta.
 
@@ -251,7 +251,7 @@ Lo seguent sera montar.
 mount /dev/sdb1 /media/backup
 ```
 
-img 59
+![](img/59.png)
 
 Ara ja podrem instalar duplicity.
 
@@ -259,7 +259,7 @@ Ara ja podrem instalar duplicity.
 apt install duplicity
 ```
 
-img 60
+![](img/60.png)
 
 Despres podem comprovar que s'ha instalat correctament.
 
@@ -274,7 +274,7 @@ useradd -m -s /bin/bash user2
 useradd -m -s /bin/bash user3
 ```
 
-img 61
+![](img/61.png)
 
 Per comprovar que s'han creat correctament farem.
 
@@ -282,7 +282,7 @@ Per comprovar que s'han creat correctament farem.
 grep -E "user2|user3" /etc/passwd
 ``` 
 
-img 62
+![](img/62.png)
 
 Li configurarem la contrasenya amb aquesta comanda.
 
@@ -291,7 +291,7 @@ passwd user2
 passwd user3
 ```
 
-img 63
+![](img/63.png)
 
 Crearem arxius buit sense proposit nomes perqu estiguin alla per poder fer la prova en el carpeta de home del usuari.
 
@@ -300,7 +300,7 @@ fallocate -l 10MB archivo1
 ...
 ```
 
-img64
+![](img/64.png)
 
 El seguent pas sera fer la copia de seguretat de la carpeta /home amb la seguent comanda.
 
@@ -308,7 +308,7 @@ El seguent pas sera fer la copia de seguretat de la carpeta /home amb la seguent
 sudo duplicity full /home/ file:///media/backup/
 ``` 
 
-img 65
+![](img/65.png)
 
 Despres comprovem que s'ha fet correctament en /media/backup/.
 
@@ -316,7 +316,7 @@ Despres comprovem que s'ha fet correctament en /media/backup/.
 ls /media/backup
 ```
 
-img 66
+![](img/66.png)
 
 Ara borrarem alguns arxius per poder despres fer el backup.
 
@@ -325,7 +325,7 @@ rm archivo1
 ...
 ```
 
-img 67
+![](img/67.png)
 
 El seguent sera fer la restauracio de el /home de usuari ho farem amb.
 
@@ -333,7 +333,7 @@ El seguent sera fer la restauracio de el /home de usuari ho farem amb.
 duplicity restore file:///media/backup/ /home/usuari
 ```
 
-img 68
+![](img/68.png)
 
 Despres farem un ls i entrarem en el usuari i comprovem que ho tenim tot un altre vegada.
 
@@ -343,7 +343,7 @@ cd usuari
 ls
 ```
 
-img 69
+![](img/69.png)
 
 Despres el seguent pas sera crear un nou fitxer per fer un altre comprovacio.
 
@@ -351,7 +351,7 @@ Despres el seguent pas sera crear un nou fitxer per fer un altre comprovacio.
 fallocate -l 10MB archivo5
 ``` 
 
-img 70 
+![](img/70.png)
 
 Farem una copia nova, i com hem creat un nou arxiu el detectara i fara una copia incremental.
 
@@ -359,7 +359,7 @@ Farem una copia nova, i com hem creat un nou arxiu el detectara i fara una copia
 duplicity full /home/ file:///media/backup/
 ```
 
-img 71
+![](img/71.png)
 
 Ara desmontarem /media/backup.
 
@@ -367,11 +367,11 @@ Ara desmontarem /media/backup.
 umount /media/backup
 ```
 
-img 72
+![](img/72.png)
 
 Ara crearem un script amb bin-bash que fara la copia completa de /home del usuari principal. Osigui fara tot el que hem fet pero automaticament.
 
-img 73
+![](img/73.png)
 
 Despres li donarem permisos de execusio perque sino no podrem executarlo,
 
@@ -379,7 +379,7 @@ Despres li donarem permisos de execusio perque sino no podrem executarlo,
 chmod +x fullbackup.sh
 ```
 
-img 74
+![](img/74.png)
 
 I modifiquem el cron perquè s’executi els diumenges a les 23:00. I guardarem.
 
@@ -387,13 +387,13 @@ I modifiquem el cron perquè s’executi els diumenges a les 23:00. I guardarem.
 crontab -e
 ```
 
-img 75
+![](img/75.png)
 
-img 76
+![](img/76.png)
 
 El seguent pas i el ultim sera crear un altre arxiu executable de bin-bash, que sigui el incremental. 
 
-img 77
+![](img/77.png)
 
 Donarem tambe els permisos amb chmod.
 
@@ -401,7 +401,7 @@ Donarem tambe els permisos amb chmod.
 chmod +x incrementalbackup.sh
 ```
 
-img 78
+![](img/78.png)
 
 Comprovarem que hem creat els dos am ls -l.
 
@@ -409,8 +409,8 @@ Comprovarem que hem creat els dos am ls -l.
 ls -l
 ``` 
 
-img 79
+![](img/79.png)
 
 Per ultim el programem a cron perquè s’executi de dilluns a dissabte a les 23:00.
 
-img 80
+![](img/80.png)
