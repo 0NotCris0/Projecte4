@@ -203,11 +203,12 @@ I podrem veure que ja està tot una altra vegada.
 
 ## Part 2: Còpia seguretat servidor Linux
 
-Ara continuarem amb el servidor de linux que el configurarem amb un disc secundari de 10GB. I les seguents especificacions. 
+Ara continuarem amb el servidor de Linux, que el configurarem amb un disc secundari de 10GB i les següents especificacions.
+
 
 ![](img/54.png)
 
-Entrarem en la maquina de linux i comprovarem que veu el segon disk. Amb aquesta comanda.
+Entrarem a la màquina de Linux i comprovarem que veu el segon disc amb aquesta comanda.
 
 ```bash
 sudo fdisk -l
@@ -215,8 +216,8 @@ sudo fdisk -l
 
 ![](img/55.png) 
 
-Ara crearem una particio nova en el segon disc de 10GB.
-Posarem primer N(nova particio), P(Una particio primaria), posarem el que surt per defecte i per ultim W(per guardar.)
+Ara crearem una partició nova en el segon disc de 10GB.
+Posarem primer N (nova partició), P (partició primària), deixarem els valors per defecte i per últim W (per guardar).
 
 ```bash
 sudo fdisk /dev/sdb
@@ -224,14 +225,14 @@ sudo fdisk /dev/sdb
 
 ![](img/56.png)
 
-I ara podem veure que s'ha creat correctament. 
+I ara podem veure que s’ha creat correctament.
 
 ```bash
 sudo fdisk -l
 ``` 
 ![](img/57.png)
 
-Haurem de posarle en el format XFS amb aquesta comanda.
+Haurem de posar-li el format XFS amb aquesta comanda.
 
 ```bash
 sudo mkfs.xfs /dev/sdb1
@@ -239,13 +240,13 @@ sudo mkfs.xfs /dev/sdb1
 
 ![](img/58.png)
 
-Creem el punt de muntatge manualment a /media/backup. El primer sera crear la carpeta.
+Creem el punt de muntatge manualment a /media/backup. El primer serà crear la carpeta.
 
 ```bash
 mkdir /media/backup
 ```
 
-Lo seguent sera montar. 
+El següent serà muntar.
 
 ```bash
 mount /dev/sdb1 /media/backup
@@ -253,7 +254,7 @@ mount /dev/sdb1 /media/backup
 
 ![](img/59.png)
 
-Ara ja podrem instalar duplicity.
+Ara ja podrem instal·lar Duplicity.
 
 ```bash 
 apt install duplicity
@@ -261,13 +262,13 @@ apt install duplicity
 
 ![](img/60.png)
 
-Despres podem comprovar que s'ha instalat correctament.
+Després podem comprovar que s’ha instal·lat correctament.
 
 ```bash
 duplicity --version
 ``` 
 
-Despres creem dos usuaris adicionals amb carpetas personals. Que seran user2 i user3.
+Després creem dos usuaris addicionals amb carpetes personals, que seran user2 i user3.
 
 ```bash
 useradd -m -s /bin/bash user2
@@ -276,7 +277,7 @@ useradd -m -s /bin/bash user3
 
 ![](img/61.png)
 
-Per comprovar que s'han creat correctament farem.
+Per comprovar que s’han creat correctament farem:
 
 ```bash
 grep -E "user2|user3" /etc/passwd
@@ -284,7 +285,7 @@ grep -E "user2|user3" /etc/passwd
 
 ![](img/62.png)
 
-Li configurarem la contrasenya amb aquesta comanda.
+Els configurarem la contrasenya amb aquesta comanda.
 
 ```bash
 passwd user2
@@ -293,7 +294,7 @@ passwd user3
 
 ![](img/63.png)
 
-Crearem arxius buit sense proposit nomes perqu estiguin alla per poder fer la prova en el carpeta de home del usuari.
+Crearem arxius buits sense propòsit només perquè estiguin allà per poder fer la prova a la carpeta home de l’usuari.
 
 ```bash 
 fallocate -l 10MB archivo1
@@ -302,7 +303,7 @@ fallocate -l 10MB archivo1
 
 ![](img/64.png)
 
-El seguent pas sera fer la copia de seguretat de la carpeta /home amb la seguent comanda.
+El següent pas serà fer la còpia de seguretat de la carpeta /home amb la següent comanda.
 
 ```bash 
 sudo duplicity full /home/ file:///media/backup/
@@ -310,7 +311,7 @@ sudo duplicity full /home/ file:///media/backup/
 
 ![](img/65.png)
 
-Despres comprovem que s'ha fet correctament en /media/backup/.
+Després comprovem que s’ha fet correctament a /media/backup/.
 
 ```bash
 ls /media/backup
@@ -318,7 +319,7 @@ ls /media/backup
 
 ![](img/66.png)
 
-Ara borrarem alguns arxius per poder despres fer el backup.
+Ara esborrarem alguns arxius per poder després fer la restauració.
 
 ```bash
 rm archivo1
@@ -327,7 +328,7 @@ rm archivo1
 
 ![](img/67.png)
 
-El seguent sera fer la restauracio de el /home de usuari ho farem amb.
+El següent serà fer la restauració del /home de l’usuari, ho farem amb:
 
 ```bash
 duplicity restore file:///media/backup/ /home/usuari
@@ -335,7 +336,7 @@ duplicity restore file:///media/backup/ /home/usuari
 
 ![](img/68.png)
 
-Despres farem un ls i entrarem en el usuari i comprovem que ho tenim tot un altre vegada.
+Després farem un ls, entrarem a l’usuari i comprovarem que ho tenim tot una altra vegada.
 
 ```bash
 ls
@@ -345,7 +346,7 @@ ls
 
 ![](img/69.png)
 
-Despres el seguent pas sera crear un nou fitxer per fer un altre comprovacio.
+Després el següent pas serà crear un nou fitxer per fer una altra comprovació.
 
 ```bash
 fallocate -l 4MB archivo5
@@ -353,7 +354,7 @@ fallocate -l 4MB archivo5
 
 ![](img/70.png)
 
-Farem una copia nova, i com hem creat un nou arxiu el detectara i fara una copia incremental.
+Farem una còpia nova, i com hem creat un nou arxiu el detectarà i farà una còpia incremental.
 
 ```bash
 duplicity full /home/ file:///media/backup/
@@ -361,7 +362,7 @@ duplicity full /home/ file:///media/backup/
 
 ![](img/71.png)
 
-Ara desmontarem /media/backup.
+Ara desmuntarem /media/backup.
 
 ```bash 
 umount /media/backup
@@ -369,11 +370,12 @@ umount /media/backup
 
 ![](img/72.png)
 
-Ara crearem un script amb bin-bash que fara la copia completa de /home del usuari principal. Osigui fara tot el que hem fet pero automaticament.
+Ara crearem un script amb bin/bash que farà la còpia completa de /home de l’usuari principal. O sigui, farà tot el que hem fet però automàticament.
+
 
 ![](img/73.png)
 
-Despres li donarem permisos de execusio perque sino no podrem executarlo,
+Després li donarem permisos d’execució perquè si no no podrem executar-lo.
 
 ```bash
 chmod +x fullbackup.sh
@@ -391,11 +393,11 @@ crontab -e
 
 ![](img/76.png)
 
-El seguent pas i el ultim sera crear un altre arxiu executable de bin-bash, que sigui el incremental. 
+El següent pas i l’últim serà crear un altre arxiu executable de bin/bash, que sigui l’incremental.
 
 ![](img/77.png)
 
-Donarem tambe els permisos amb chmod.
+Donarem també els permisos amb chmod.
 
 ```bash
 chmod +x incrementalbackup.sh
@@ -403,7 +405,7 @@ chmod +x incrementalbackup.sh
 
 ![](img/78.png)
 
-Comprovarem que hem creat els dos am ls -l.
+Comprovarem que hem creat els dos amb ls -l.
 
 ```bash 
 ls -l
