@@ -131,5 +131,7 @@ Farem lo mateix amb devs.
 
 img 26
 
+## Instalacio i configuracio de Servidor NFS
+
 
 
