@@ -133,5 +133,88 @@ img 26
 
 ## Instalacio i configuracio de Servidor NFS
 
+Entrarem en el ubuntu server per instalar el servidor NFS.
 
+Comançarem instalan-lo amb les seves dependencies:
+
+```bash
+sudo apt install nfs-kernel-server -y
+```
+
+img 27 
+
+Y tambe comprovarem amb una altre comanda que s'ha instalat.
+
+```bash
+systemctl status nfs-kernel-server
+```
+
+img 28
+
+Començarem editan l'arxiu de /etc/exports, on decidirem quins arxius exportarem que nomes sera el directori /srv/nfs. 
+
+```bash 
+nano /etc/exports
+``` 
+
+img 29
+
+Despres afagirem una linia que sera aquesta:
+
+```bash
+/srv/nfs 192.168.56.105(rw,sync)
+```
+
+img 30
+
+Haurem de reiniciar al servidor
+
+```bash
+sudo systemctl restart nfs-kernel-server
+```
+
+img 31
+
+Iara comrpovarem que s'esta compartin correctament.
+
+```bash 
+sudo exportfs -u
+``` 
+
+img 32 
+
+Ara haurem de instalar i configurar el NFS en el clietn Zorin.
+
+Farem un:
+
+```bash
+apt install nfs-commun -y
+```
+
+img 33
+
+Ara comrpovarem que pot veure correctament el directori,
+
+```bash
+sudo showmount -e 192.168.56.202
+```
+
+img 34
+
+Haurem de crear una carpeta:
+
+```bash
+mkdir /srv/remot 
+```
+
+Per poder accedir el recursos haurem de fer un mount per muntar l'unitat. Despres per comrpovar que s'ha fet correctament farem un ls.
+
+```bash
+sudo mount -t nfs 192.168.56.202:/srv/nfs /srv/remot
+ls /srv/remot
+```
+
+img 35
+
+## Fase 3: L'Exportació d'Administració (El Dilema del root_squash)
 
