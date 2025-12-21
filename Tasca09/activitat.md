@@ -218,3 +218,83 @@ img 35
 
 ## Fase 3: L'Exportació d'Administració (El Dilema del root_squash)
 
+El client necessita que el directori /srv/nfs/admin_tools sigui accessible per l'equip d'administradors.
+
+Com hem fet abans editarem l'arxiu exports i li afegirem una linia de /srv/nfs/admin_tools 192.168.56.105(rw,sync). 
+
+```bash
+/srv/nfs/admin_tools 192.168.56.105(rw,sync)
+```
+
+img 36
+
+Un cop fet haurem de reiniciar el sevei.
+
+```bash 
+sudo systemctl restart nfs-kernel-server
+```
+
+Anirem despres al client i creem la carpeta de admin_tools.
+
+```bash
+sudo mkdir /mnt/admin_tools
+``` 
+
+img 37
+
+I despres per accedir a tot, muntarem la unitat amb un mount.
+
+```bash
+sudo mount -t nfs 192.168.56.202:/srv/nfs/admin_tools /mnt/admin_tools
+``` 
+
+img 38
+
+img 39
+
+### Prova 1
+
+El fitxer no pertany a root sinó a l’usuari nobody. Això passa perquè el servidor NFS té activada per defecte l’opció root_squash, que fa que el root del client no tingui privilegis.
+
+Ara mostarare que com a root no podrem entrar.
+
+img 40
+
+Pero si entrem amb l'usuari de admin01 si que podrem perque partany al grup de admins que es el grup propetari.
+
+img 41
+
+img 42
+
+### Prova 2
+
+En afegir l’opció no_root_squash a l’exportació del directori. Ara el servidor NFS sí que reconeix el root del client com a root real.
+
+Modificarem una altre vegada el arxiu /etc/exports. Pero ara afegirem la opcio de no_root_squash.
+
+```bash
+/srv/nfs/admin_tools 192.168.56.105(rw,sync,no_root_squash)
+```
+
+img 43
+
+Despres reiniciarem el servei.
+
+```bash
+sudo systemctl restart nfs-kernel-server
+```
+
+Despres desmontem i muntem l'unitat el client.
+
+```bash
+sudo umount /mnt/admin_tools
+sudo mount -t nfs 192.168.56.202:/srv/nfs/admin_tools /mnt/admin_tools
+```
+
+img 44 
+
+I per ultim podrem veure que podrem acedirt desde root.
+
+img 45
+
+##
