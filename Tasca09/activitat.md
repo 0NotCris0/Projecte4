@@ -299,3 +299,107 @@ img 45
 
 ## Fase 4: L'Exportació de Desenvolupament (Permisos rw vs ro)
 
+Ara editarem /etc/exports per afegir dues exportacions per al mateix directori. El client vol que la xarxa d'administració 192.168.56.10/24 hi pugui escriure, però que la xarxa de consultors 192.168.56.150 només pugui llegir.
+
+Afagirem aquestes dues linias en el arxiu:
+
+```bash
+/srv/nfs/dev_projectes 192.168.56.10/24(rw,sync,no_root_squash)
+/srv/nfs/dev_projectes 192.168.56.150(ro,sync,no_root_squash)
+```
+
+img 46
+
+Despres reiniciem el servei.
+
+```bash
+sudo systemctl restart nfs-kernel-server
+```
+
+Lo seguent sera entrar en el client, i crear la carpeta per poderla montar despres.
+
+```bash
+sudo mkdir /mnt/dev_projectes
+``` 
+
+img 47
+
+Ara si muntem la unitat, per poder acedir el recursos.
+
+```bash
+sudo mount -t nfs 192.168.56.202:/srv/nfs/dev_projectes /mnt/dev_projectes
+```
+
+img 48
+
+### Prova 1
+
+Entrarem en la conte de devs01, intentarem crear un arxiu amb aquesta conte i veurem que ens deixa i si veiem els permisos tambe tenen permisos de escritura i de llegir.
+
+img 49
+
+### Prova 2
+
+Lo seguent sera canviar la ip del client a la hem posat adalt que sera 192.168.56.150, despres desmontarem i muntarem els recursos i haurie de funcionar nomes la lectura.
+
+Comançem canvian la IP. Que en Zorin OS ho farem en la configuracio de la xarxa.
+
+img 50
+
+img 51
+
+I ara amb allo cambiat desmontarem i muntarem la unitat.
+
+```bash
+sudo umount /mnt/dev_projectes 
+sudo mount -t nfs 192.168.56.202:/srv/nfs/dev_projectes /mnt/dev_projectes 
+``` 
+
+img 52
+
+I verurem com vam pusar en el arxiu de exports que aquesta IP que hem pusat nomes pogui llegir no podra fer res mes.
+
+img 53 
+
+### Prova 3
+
+Ara entrarem amb el usuari de admin01 i veure que no podrem crear cap fitxer nomes llegir.
+
+img 54
+
+## Fase 5: Muntatge Automàtic amb /etc/fstab
+
+És evident que els usuaris no poden estar muntant manualment els recursos compartits cada vegada que reinicien el sistema. Per això, es configurarà el muntatge automàtic mitjançant el fitxer /etc/fstab al client.
+
+Lo primer sera editar l'arxiu de /etc/fstab.
+
+```bash
+sudo nano /etc/fstab
+```
+
+Despres posarem aixo:
+
+```bash
+192.168.56.202:/srv/nfs/admin_tools /mnt/admin_tools nfs defaults 0 0 
+192.168.56.202:/srv/nfs/dev_projectes /mnt/dev_projectes nfs defaults 0 0 
+```
+
+img 55
+
+Despres fem aquesta comanda, per provar les entrades sense reiniciar.
+
+```bash
+sudo mount -a
+```
+
+Reiniciarem i veurem que s'han fet correctament.
+
+img 56
+
+## Conclusió
+
+Aquesta es una eina normal la veritat, tot el proces si s'ha de fer en molt ordinadors crec que podria tardar una mica molt de temps i no seria tan eficaz i aver de pasar a cada ordinador per configurarlo crec que menjaria molt de temps.
+
+Tambe es recomana implementar un sistema d’autenticació centralitzada (com LDAP, FreeIPA) per evitar el error de no tenir els mateixos valors en UID i GID entre equips. 
+
+Tambe es podria evolucioanr a 
