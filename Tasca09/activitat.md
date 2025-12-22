@@ -392,7 +392,7 @@ Després fem aquesta comanda per provar les entrades sense reiniciar:
 sudo mount -a
 ```
 
-Reiniciarem i veurem que s'han fet correctament.
+Reiniciarem i comprovarem que s’ha fet correctament.
 
 img 56
 
