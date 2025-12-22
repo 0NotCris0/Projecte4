@@ -1,12 +1,12 @@
 # Servidor NFS
 
-El primer que farem seran crear dos maquines virtuals, una sera el server NFS que sera un ubuntu i per ultim el client que sera un Zorin OS.
+El primer que farem serà crear dues màquines virtuals: una serà el servidor NFS, que serà un Ubuntu, i finalment el client, que serà un Zorin OS.
 
 img 1
 
 img 2
 
-Els dos hauren de tenir host-only i s'hauren de veure.
+Totes dues hauran de tenir la configuració host-only i s’hauran de poder veure entre elles.
 
 img 11
 
@@ -14,17 +14,17 @@ img 12
 
 ## Preparacio Ubuntu (Servidor) 
 
-Primer entrarem al servidor i actualizarem tot amb apt update && apt upgrade, i crearem dos grups que sera Devs i Admins. 
+Primer entrarem al servidor i ho actualitzarem tot amb apt update && apt upgrade, i crearem dos grups, que seran Devs i Admins. 
 
 img 3
 
 img 4
 
-Lo seguent sera crear un usuari que es digui devs01 i que sigui membre del grup devs i un altre usuari que sera admin01 i del grup admins. 
+El següent pas serà crear un usuari que es digui devs01 i que sigui membre del grup Devs, i un altre usuari que serà admin01 i formarà part del grup Admins.
 
 img 5
 
-Comrpovarem que s'han cret correctament
+Comprovarem que s’han creat correctament.
 
 ```bash
 cat /etc/group | grep -E "devs|admins"
@@ -34,7 +34,7 @@ img 19
 
 ## Creacio de directoris
 
-Lo que farem sera crear un directori /srv/nfs/dev_projectes.  
+El que farem serà crear un directori /srv/nfs/dev_projectes. 
 
 ```bash
 cd /srv
@@ -44,11 +44,11 @@ mkdir dev_projectes
 
 img 6
 
-Crearem un altre directori /srv/nfs/admin_tools. 
+Crearem un altre directori /srv/nfs/admin_tools.
 
 img 7
 
-Ara farem que els developers tinguin control sobre el seu directori que sera amb chown. 
+Ara farem que els developers tinguin control sobre el seu directori, cosa que farem amb chown.
 
 ```bash
 chown :devs dev_projectes/
@@ -56,7 +56,7 @@ chown :devs dev_projectes/
 
 img 8
 
-Despres farem lo mateix pero amb la de admin. 
+Després farem el mateix, però amb el d’admin.
 
 ```bash
 chown :admins admin_tools/
@@ -64,7 +64,7 @@ chown :admins admin_tools/
 
 img 9
 
-Ara cambiem que tinguin els permisos amd:
+Ara canviem els permisos amb chmod:
 
 ```bash
 chmod 770 admin_tools/
@@ -75,37 +75,37 @@ img 10
 
 ## Preparació Zorin OS (Client)
 
-Ara haurem de fer lo matexi amb el client que sera el Zorin OS.
+Ara haurem de fer el mateix amb el client, que serà el Zorin OS.
 
-Pero ho farem diferent i mes facil, gracies a la aplicacio users and groups que la descareguem en software. 
+Però ho farem de manera diferent i més fàcil, gràcies a l’aplicació Users and Groups, que descarregarem des del Software.
 
 img 13 
 
 img 14
 
-Ara crearem els mateixos usuaris i groups en el client de Zorin.
+Ara crearem els mateixos usuaris i grups al client Zorin.
 
-Lo primer sera crear el usuari devs01 i admin01. Li donarem añadir.
+El primer serà crear els usuaris devs01 i admin01. Els afegirem amb l’opció “Afegeix” (Add).
 
-Posarem el nom i el usuario.
+Posarem el nom i el usuari.
 
 img 15
 
 img 17
 
-Despres configurarem la contrasenya.
+Després configurarem la contrasenya.
 
 img 16
 
 img 18
 
-Ahora pasaremos a crear los grupos es molt important que tenen el mateix GID i UID.
+Ara passarem a crear els grups. És molt important que tinguin el mateix GID i UID.
 
 Posarem gestionar grups.
 
 img 20
 
-Lo seguent Añadir.
+Lo seguent "Añadir".
 
 img 21
 
@@ -117,9 +117,9 @@ Posarem el nom admins i despres el ID 1002.
 
 img 23
 
-Per ultim posarem els usuari en cada grup. Anirem a configuracio de grups. Selecionarem a admins i despres devs. 
+Per últim, posarem els usuaris a cada grup. Anirem a la configuració de grups, seleccionarem Admins i després Devs.
 
-Donarem a propietats.
+Després farem clic a Propietats.
 
 img 24
 
@@ -133,9 +133,9 @@ img 26
 
 ## Instalacio i configuracio de Servidor NFS
 
-Entrarem en el ubuntu server per instalar el servidor NFS.
+Entrarem a l’Ubuntu Server per instal·lar el servidor NFS.
 
-Comançarem instalan-lo amb les seves dependencies:
+Començarem instal·lant-lo amb les seves dependències:
 
 ```bash
 sudo apt install nfs-kernel-server -y
@@ -143,7 +143,7 @@ sudo apt install nfs-kernel-server -y
 
 img 27 
 
-Y tambe comprovarem amb una altre comanda que s'ha instalat.
+I també comprovarem, amb una altra comanda, que s’ha instal·lat correctament.
 
 ```bash
 systemctl status nfs-kernel-server
@@ -151,7 +151,7 @@ systemctl status nfs-kernel-server
 
 img 28
 
-Començarem editan l'arxiu de /etc/exports, on decidirem quins arxius exportarem que nomes sera el directori /srv/nfs. 
+Començarem editant l’arxiu /etc/exports, on decidirem quins directoris exportarem, que només serà el directori /srv/nfs.
 
 ```bash 
 nano /etc/exports
@@ -159,7 +159,7 @@ nano /etc/exports
 
 img 29
 
-Despres afagirem una linia que sera aquesta:
+Després afegirem una línia, que serà aquesta:
 
 ```bash
 /srv/nfs 192.168.56.105(rw,sync)
@@ -175,7 +175,7 @@ sudo systemctl restart nfs-kernel-server
 
 img 31
 
-Iara comrpovarem que s'esta compartin correctament.
+I ara comprovarem que s’està compartint correctament.
 
 ```bash 
 sudo exportfs -u
@@ -183,7 +183,7 @@ sudo exportfs -u
 
 img 32 
 
-Ara haurem de instalar i configurar el NFS en el clietn Zorin.
+Ara haurem d’instal·lar i configurar el NFS al client Zorin.
 
 Farem un:
 
@@ -193,7 +193,7 @@ apt install nfs-commun -y
 
 img 33
 
-Ara comrpovarem que pot veure correctament el directori,
+Ara comprovarem que pot veure correctament el directori
 
 ```bash
 sudo showmount -e 192.168.56.202
@@ -207,7 +207,7 @@ Haurem de crear una carpeta:
 mkdir /srv/remot 
 ```
 
-Per poder accedir el recursos haurem de fer un mount per muntar l'unitat. Despres per comrpovar que s'ha fet correctament farem un ls.
+Per poder accedir als recursos, haurem de fer un mount per muntar la unitat. Després, per comprovar que s’ha fet correctament, farem un ls.
 
 ```bash
 sudo mount -t nfs 192.168.56.202:/srv/nfs /srv/remot
@@ -218,9 +218,9 @@ img 35
 
 ## Fase 3: L'Exportació d'Administració (El Dilema del root_squash)
 
-El client necessita que el directori /srv/nfs/admin_tools sigui accessible per l'equip d'administradors.
+El client necessita que el directori /srv/nfs/admin_tools sigui accessible per l’equip d’administradors.
 
-Com hem fet abans editarem l'arxiu exports i li afegirem una linia de /srv/nfs/admin_tools 192.168.56.105(rw,sync). 
+Com hem fet abans, editarem l’arxiu /etc/exports i hi afegirem una línia de /srv/nfs/admin_tools 192.168.56.105(rw,sync). 
 
 ```bash
 /srv/nfs/admin_tools 192.168.56.105(rw,sync)
@@ -228,13 +228,13 @@ Com hem fet abans editarem l'arxiu exports i li afegirem una linia de /srv/nfs/a
 
 img 36
 
-Un cop fet haurem de reiniciar el sevei.
+Un cop fet, haurem de reiniciar el servei.
 
 ```bash 
 sudo systemctl restart nfs-kernel-server
 ```
 
-Anirem despres al client i creem la carpeta de admin_tools.
+Anirem després al client i crearem la carpeta admin_tools.
 
 ```bash
 sudo mkdir /mnt/admin_tools
@@ -242,7 +242,7 @@ sudo mkdir /mnt/admin_tools
 
 img 37
 
-I despres per accedir a tot, muntarem la unitat amb un mount.
+I després, per accedir a tot, muntarem la unitat amb un mount.
 
 ```bash
 sudo mount -t nfs 192.168.56.202:/srv/nfs/admin_tools /mnt/admin_tools
@@ -254,13 +254,13 @@ img 39
 
 ### Prova 1
 
-El fitxer no pertany a root sinó a l’usuari nobody. Això passa perquè el servidor NFS té activada per defecte l’opció root_squash, que fa que el root del client no tingui privilegis.
+El fitxer no pertany a root, sinó a l’usuari nobody. Això passa perquè el servidor NFS té activada per defecte l’opció root_squash, que fa que el root del client no tingui privilegis.
 
-Ara mostarare que com a root no podrem entrar.
+Ara mostraré que, com a root, no podrem accedir-hi.
 
 img 40
 
-Pero si entrem amb l'usuari de admin01 si que podrem perque partany al grup de admins que es el grup propetari.
+Però si entrem amb l’usuari admin01, sí que podrem, perquè pertany al grup Admins, que és el grup propietari.
 
 img 41
 
@@ -268,9 +268,9 @@ img 42
 
 ### Prova 2
 
-En afegir l’opció no_root_squash a l’exportació del directori. Ara el servidor NFS sí que reconeix el root del client com a root real.
+En afegir l’opció no_root_squash a l’exportació del directori, ara el servidor NFS sí que reconeix el root del client com a root real.
 
-Modificarem una altre vegada el arxiu /etc/exports. Pero ara afegirem la opcio de no_root_squash.
+Modificarem una altra vegada l’arxiu /etc/exports, però ara hi afegirem l’opció no_root_squash.
 
 ```bash
 /srv/nfs/admin_tools 192.168.56.105(rw,sync,no_root_squash)
@@ -293,15 +293,15 @@ sudo mount -t nfs 192.168.56.202:/srv/nfs/admin_tools /mnt/admin_tools
 
 img 44 
 
-I per ultim podrem veure que podrem acedirt desde root.
+I, per últim, podrem comprovar que podem accedir-hi des de root.
 
 img 45
 
 ## Fase 4: L'Exportació de Desenvolupament (Permisos rw vs ro)
 
-Ara editarem /etc/exports per afegir dues exportacions per al mateix directori. El client vol que la xarxa d'administració 192.168.56.10/24 hi pugui escriure, però que la xarxa de consultors 192.168.56.150 només pugui llegir.
+Ara editarem /etc/exports per afegir dues exportacions per al mateix directori. El client vol que la xarxa d’administració 192.168.56.10/24 hi pugui escriure, però que la xarxa de consultors 192.168.56.150 només pugui llegir.
 
-Afagirem aquestes dues linias en el arxiu:
+Afegirem aquestes dues línies a l’arxiu:
 
 ```bash
 /srv/nfs/dev_projectes 192.168.56.10/24(rw,sync,no_root_squash)
@@ -316,7 +316,7 @@ Despres reiniciem el servei.
 sudo systemctl restart nfs-kernel-server
 ```
 
-Lo seguent sera entrar en el client, i crear la carpeta per poderla montar despres.
+El següent pas serà entrar al client i crear la carpeta per poder-la muntar després.
 
 ```bash
 sudo mkdir /mnt/dev_projectes
@@ -324,7 +324,7 @@ sudo mkdir /mnt/dev_projectes
 
 img 47
 
-Ara si muntem la unitat, per poder acedir el recursos.
+Ara sí, muntarem la unitat per poder accedir als recursos.
 
 ```bash
 sudo mount -t nfs 192.168.56.202:/srv/nfs/dev_projectes /mnt/dev_projectes
@@ -334,21 +334,21 @@ img 48
 
 ### Prova 1
 
-Entrarem en la conte de devs01, intentarem crear un arxiu amb aquesta conte i veurem que ens deixa i si veiem els permisos tambe tenen permisos de escritura i de llegir.
+Entrarem al compte de devs01, intentarem crear un arxiu amb aquest compte i veurem que ens ho permet. També comprovarem que té permisos de lectura i escriptura.
 
 img 49
 
 ### Prova 2
 
-Lo seguent sera canviar la ip del client a la hem posat adalt que sera 192.168.56.150, despres desmontarem i muntarem els recursos i haurie de funcionar nomes la lectura.
+El següent pas serà canviar la IP del client a la que hem posat abans, que serà 192.168.56.150. Després, desmuntarem i muntarem els recursos, i hauria de funcionar només en mode lectura.
 
-Comançem canvian la IP. Que en Zorin OS ho farem en la configuracio de la xarxa.
+Comencem canviant la IP, que a Zorin OS ho farem des de la configuració de la xarxa.
 
 img 50
 
 img 51
 
-I ara amb allo cambiat desmontarem i muntarem la unitat.
+I ara, amb això canviat, desmuntarem i muntarem la unitat.
 
 ```bash
 sudo umount /mnt/dev_projectes 
@@ -357,13 +357,13 @@ sudo mount -t nfs 192.168.56.202:/srv/nfs/dev_projectes /mnt/dev_projectes
 
 img 52
 
-I verurem com vam pusar en el arxiu de exports que aquesta IP que hem pusat nomes pogui llegir no podra fer res mes.
+I veurem que, tal com vam posar a l’arxiu /etc/exports, aquesta IP que hem configurat només podrà llegir i no podrà fer res més.
 
 img 53 
 
 ### Prova 3
 
-Ara entrarem amb el usuari de admin01 i veure que no podrem crear cap fitxer nomes llegir.
+Ara entrarem amb l’usuari admin01 i veurem que no podrem crear cap fitxer, només llegir.
 
 img 54
 
@@ -371,13 +371,13 @@ img 54
 
 És evident que els usuaris no poden estar muntant manualment els recursos compartits cada vegada que reinicien el sistema. Per això, es configurarà el muntatge automàtic mitjançant el fitxer /etc/fstab al client.
 
-Lo primer sera editar l'arxiu de /etc/fstab.
+El primer pas serà editar l’arxiu /etc/fstab.
 
 ```bash
 sudo nano /etc/fstab
 ```
 
-Despres posarem aixo:
+Després hi posarem això:
 
 ```bash
 192.168.56.202:/srv/nfs/admin_tools /mnt/admin_tools nfs defaults 0 0 
@@ -386,7 +386,7 @@ Despres posarem aixo:
 
 img 55
 
-Despres fem aquesta comanda, per provar les entrades sense reiniciar.
+Després fem aquesta comanda per provar les entrades sense reiniciar:
 
 ```bash
 sudo mount -a
