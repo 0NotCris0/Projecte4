@@ -16,4 +16,4 @@ Aquesta documentaci√≥ ha de ser extremadament clara. Penseu que un client nervi√
 Mans a l'obra.
 
 - [Tornar pagina principal](../README.md)
-- [Anar a la activitat](activitats.md)
+- [Anar a la activitat](activitat.md)
