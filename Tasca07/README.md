@@ -39,4 +39,6 @@ Ha d'explicar el procés des del punt de vista de l'usuari que rep ajuda. Ha d'i
 - Com acceptar la petició de connexió.
 
 - [Tornar pagina principal](../README.md)
-- [Anar a la activitat](activitats.md)
+- [Anar a la activitat 1](activitat1.md)
+- [Anar activitat 2](activitat2.md)
+- [Anar activitat 3](activitat3.md)

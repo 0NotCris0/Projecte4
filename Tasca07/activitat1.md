@@ -25,3 +25,6 @@ El primer pas és decidir quina eina utilitzarà EverPia. Heu de fer una anàlis
 
 La millor opció per a EverPia és AnyDesk, ja que ofereix un equilibri ideal entre facilitat d’ús per a clients no tècnics i funcions avançades com transferència de fitxers i connexió estable. És compatible amb Windows, macOS i Linux, i el seu model de llicència comercial és més assequible i escalable que el de TeamViewer. A més, la seva interfície és intuïtiva i el procés per compartir l’ID és senzill.
 
+- [Tornar al enunciat](README.md)
+- [Anar activitat 3](activitat3.md)
+- [Anar activitat 2](activitat2.md)
